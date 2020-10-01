@@ -11,18 +11,20 @@
                 {{ csrf_field() }}
                     <div class="card-body">
                         
-                        <div class="form-group">                        
+                        <div class="form-group {{ $errors->has('receiver_id') ? 'has-error' : '' }}">                        
                             <select name="receiver_id" id="" class="form-control">
                                 <option value="">Seleccione</option>
                                 @foreach ($users as $user)
-                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
                                     
                                 @endforeach
                             </select>
+                            {!!   $errors->first('receiver_id', "<span class=help-block>:message </span>") !!}
                         </div>
 
-                        <div class="form-group">                        
+                    <div class="form-group {{ $errors->has('body') ? 'has-error' : '' }}">                        
                             <textarea name="body" id="" cols="30" rows="10" class="form-control" placeholder="Aqui tu mensaje!"></textarea>
+                            {!!   $errors->first('body', "<span class=help-block>:message </span>") !!}
                         </div>
 
                         <div class="form-group">

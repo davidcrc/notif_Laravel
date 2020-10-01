@@ -58,7 +58,11 @@
 
                             <li class="nav-item dropdown">
                                 <a class="nav-link"  href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ __('Notificaciones') }} <span class="badge">4</span>
+                                    {{-- {{ Auth::user()->notifications->count() }} --}}
+                                    {{ __('Notificaciones') }} 
+                                    @if($count = Auth::user()->notifications->count() )
+                                        <span class="badge">{{$count}}</span>
+                                    @endif
                                     
                                 </a>
                             </li>

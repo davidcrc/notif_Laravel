@@ -19,3 +19,11 @@
     - Mejora: Creamos un modelo messages (añadimos mas campos a la migracion)
         php artisan make:model Message -m
         php artisan migrate
+
+    - Tabla para almacenar las notificaciones:
+
+        php artisan notifications:table
+        php artisan migrate
+
+    - Crear una notificacion:
+        php artisan make:notification MessageSent
