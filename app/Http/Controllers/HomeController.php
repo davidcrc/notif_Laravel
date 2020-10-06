@@ -58,4 +58,14 @@ class HomeController extends Controller
         \Log::debug( $request);
         return \back()->with('flash', 'Tu mensaje se envio!');
     }
+
+    // Mostrara los mensajes
+    public function show($id) {
+
+        $message = Message::findOrFail($id);
+
+        return view('messages.show', compact('message') );
+
+    }
+    
 }

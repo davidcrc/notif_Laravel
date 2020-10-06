@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    {{ __('Notificaciones!') }}
+                    {{ __('Laravel Notificaciones!') }}
                 </div>
             </div>
         </div>

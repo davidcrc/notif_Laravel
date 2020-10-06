@@ -57,10 +57,10 @@
                             </li>
 
                             <li class="nav-item dropdown">
-                                <a class="nav-link"  href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a class="nav-link"  href="{{route('notifications.index')}}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{-- {{ Auth::user()->notifications->count() }} --}}
                                     {{ __('Notificaciones') }} 
-                                    @if($count = Auth::user()->notifications->count() )
+                                    @if($count = Auth::user()->unreadNotifications->count() )
                                         <span class="badge">{{$count}}</span>
                                     @endif
                                     

@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use App\Models\User;
 
 // Esta clase almacenara la notificacion dependiendo si es email o database o sms
 // Como escogimos database , se usara la funcion toArray() para decirle que daatos almacenara
@@ -64,6 +65,11 @@ class MessageSent extends Notification
         // ];
         // \Log::debug( $this->message);
 
-        return $this->message->toArray();
+        // return $this->message->toArray();
+
+        return [
+            'link' => route('messages.show', $this->message->id ),
+            'text' => "Haz recibiu un mensaje de ". $this->message->sender->name,
+        ];
     }
 }

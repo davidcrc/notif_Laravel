@@ -27,3 +27,8 @@
 
     - Crear una notificacion:
         php artisan make:notification MessageSent
+
+    - Crear un controlador para las notificaciones
+        php artisan make:controller NotificationsController
+
+    - Creadas vistas para notificaciones: resources/views/notifications/index.blade.php
