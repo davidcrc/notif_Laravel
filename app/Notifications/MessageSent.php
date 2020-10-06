@@ -34,7 +34,9 @@ class MessageSent extends Notification
     public function via($notifiable)
     {
         // return ['mail'];
-        return ['database'];
+        // return ['database'];
+        return ['mail', 'database'];
+
 
     }
 
@@ -46,10 +48,21 @@ class MessageSent extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+        // Podemos retornar esto si necesitaos algo sencillisimo
+        // return (new MailMessage)
+        //             ->greeting($notifiable->name . ', ')
+        //             // ->error()
+        //             ->subject('Mensaje recibido desde App laravel notif')
+        //             ->line('Haz recibido un mensaje!')
+        //             ->action('Click aqui para ver el mensaje', route('messages.show', $this->message->id ))
+        //             ->line('Thank you for using our application!');
+
+        // o retornar esto si deseamos algo mas elaborado
+        return (new MailMessage)->view('emails.notification', [
+            'msg' => $this->message,
+            'user' => $notifiable
+        ])->subject('Mensaje recibido desde App laravel notif');
+
     }
 
     /**

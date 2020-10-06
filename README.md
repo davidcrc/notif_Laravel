@@ -32,3 +32,17 @@
         php artisan make:controller NotificationsController
 
     - Creadas vistas para notificaciones: resources/views/notifications/index.blade.php
+
+    - Para envio por correo:
+        - modificar en (function via ) : app/Notifications/MessageSent.php : return ['mail'];
+        - modificar en (function toMail ) : app/Notifications/MessageSent.php : las variables necesarias ...
+        - En el .env: 
+            MAIL_FROM_ADDRESS=correo@gmail.com
+            MAIL_FROM_NAME=...
+            MAIL_MAILER=smtp
+            MAIL_HOST=smtp.mailtrap.io
+            MAIL_USERNAME=abc
+            MAIL_PASSWORD=123
+
+        - Para modificar los assets de mail, debemos publicarlos
+            php artisan vendor:publish --tag=laravel-notifications
