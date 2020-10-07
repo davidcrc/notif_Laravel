@@ -46,3 +46,38 @@
 
         - Para modificar los assets de mail, debemos publicarlos
             php artisan vendor:publish --tag=laravel-notifications
+
+
+## Creando POSTS:
+
+    - Crear modelo (m: migration , r: controlador full):
+        php artisan make:model Post -mr
+
+    - Factory para crear Post:
+        php artisan make:factory PostFactory --model=Post
+        Post::factory(10)->create();
+
+    - Notificacion para post (Parametros de notificacion configurables) :
+        php artisan make:notification PostPublished
+
+    - En el modelo (Post): 
+        protected $guarded = [];
+
+        // Aca definimos que tiene de evento lanzara que tipo de clase Evento
+        protected $events = [
+
+            // 'created' => PostCreated::class,
+            // 'updated' => Evento::class
+        ];
+    
+    - Crear evento (laravel 8 usa $dispatchesEvents, no $events):
+        php artisan make:event PostCreated
+
+    - Crear el listener:
+        php artisan make:listener NotifyUsersAboutNewPost
+
+    - Añadir los eventos y listener q hayamos creado en: app/Providers/EventServiceProvider.php
+    
+
+    -- OJO  : Crear el evento y listener para el Post (cuando ya añadimos en el punto anterior):
+        php artisan event:generate

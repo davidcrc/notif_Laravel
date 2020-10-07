@@ -39,6 +39,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+                        <li> <a class="nav-link" href="/">Inicio</a> </li>
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -50,14 +51,14 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a class="nav-link"  href="/messages/create" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a class="nav-link"  href="{{route('messages.create')}}" >
                                     {{ __('Enviar mensaje') }}
                                     
                                 </a>
                             </li>
 
                             <li class="nav-item dropdown">
-                            <a class="nav-link"  href="{{route('notifications.index')}}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a class="nav-link"  href="{{route('notifications.index')}}" >
                                     {{-- {{ Auth::user()->notifications->count() }} --}}
                                     {{ __('Notificaciones') }} 
                                     @if($count = Auth::user()->unreadNotifications->count() )

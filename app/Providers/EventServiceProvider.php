@@ -3,10 +3,14 @@
 namespace App\Providers;
 
 use Illuminate\Auth\Events\Registered;
+use App\Events\PostCreated;
+use App\Listeners\NotifyUsersAboutNewPost;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
 
+
+// Aqui vamos a añadir los eventos con su listener respectivo
 class EventServiceProvider extends ServiceProvider
 {
     /**
@@ -18,6 +22,9 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        PostCreated::class => [
+            NotifyUsersAboutNewPost::class
+        ]
     ];
 
     /**

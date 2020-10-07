@@ -17,11 +17,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', function () {
+    return view('welcome');
+});
+
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::post('/messages', [App\Http\Controllers\HomeController::class, 'store'])->name('messages.store');
-Route::get('messages/{id}/', [App\Http\Controllers\HomeController::class, 'show'])->name('messages.show');
+Route::get('/messages/create', [App\Http\Controllers\MessagesController::class, 'create'])->name('messages.create');
+Route::post('/messages', [App\Http\Controllers\MessagesController::class, 'store'])->name('messages.store');
+Route::get('messages/{id}/', [App\Http\Controllers\MessagesController::class, 'show'])->name('messages.show');
 Route::get('notificaciones', [App\Http\Controllers\NotificationsController::class, 'index'])->name('notifications.index');
 
 // Marcar como leida
@@ -29,3 +33,6 @@ Route::patch('notificaciones/{id}', [App\Http\Controllers\NotificationsControlle
 
 // Marcar como eliminada
 Route::delete('notificaciones/{id}', [App\Http\Controllers\NotificationsController::class, 'destroy'])->name('notifications.destroy');
+
+
+Route::resource('posts', App\Http\Controllers\PostsController::class);
