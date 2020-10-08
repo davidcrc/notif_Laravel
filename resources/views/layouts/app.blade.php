@@ -57,16 +57,8 @@
                                 </a>
                             </li>
 
-                            <li class="nav-item dropdown">
-                            <a class="nav-link"  href="{{route('notifications.index')}}" >
-                                    {{-- {{ Auth::user()->notifications->count() }} --}}
-                                    {{ __('Notificaciones') }} 
-                                    @if($count = Auth::user()->unreadNotifications->count() )
-                                        <span class="badge">{{$count}}</span>
-                                    @endif
-                                    
-                                </a>
-                            </li>
+                            {{-- Compoente de VueJS --}}
+                            <notifications-component> </notifications-component>
 
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -99,6 +91,10 @@
         @endif
 
         <main class="py-4">
+
+            {{-- <div id="app">
+                
+             </div> --}}
             @yield('content')
         </main>
     </div>

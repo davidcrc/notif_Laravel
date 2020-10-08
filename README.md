@@ -81,3 +81,10 @@
 
     -- OJO  : Crear el evento y listener para el Post (cuando ya añadimos en el punto anterior):
         php artisan event:generate
+
+
+## Utilizando VueJs para las notificaciones
+
+    npm install --save-dev vue
+
+    npm run dev o npm run watch
