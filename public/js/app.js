@@ -1930,6 +1930,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1946,7 +1951,23 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     markAsRead: function markAsRead(id) {
-      axios.patch('/notificaciones/' + id);
+      var _this2 = this;
+
+      axios.patch('/notificaciones/' + id).then(function (res) {
+        _this2.notifications = res.data;
+      });
+    },
+    markAllAsRead: function markAllAsRead() {
+      var _this3 = this;
+
+      this.notifications.forEach(function (notification) {
+        _this3.markAsRead(notification.id);
+      });
+    }
+  },
+  computed: {
+    linkToNotifications: function linkToNotifications() {
+      return "/notificaciones";
     }
   }
 });
@@ -37535,7 +37556,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("li", { staticClass: "nav-item dropdown" }, [
+  return _c("li", { staticClass: "dropdown" }, [
     _c(
       "a",
       {
@@ -37590,20 +37611,42 @@ var render = function() {
       ? _c(
           "div",
           { staticClass: "dropdown-menu" },
-          _vm._l(_vm.notifications, function(notification) {
-            return _c("li", { key: notification.id }, [
-              _c("a", {
-                attrs: { href: notification.data.link },
-                domProps: { textContent: _vm._s(notification.data.text) },
-                on: {
-                  click: function($event) {
-                    return _vm.markAsRead(notification.id)
-                  }
-                }
-              })
+          [
+            _c("li", { staticClass: "dropdown-item" }, [
+              _c("a", { attrs: { href: _vm.linkToNotifications } }, [
+                _vm._v(" Todas las notificaciones ")
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.notifications, function(notification) {
+              return _c(
+                "li",
+                { key: notification.id, staticClass: "dropdown-item" },
+                [
+                  _c("a", {
+                    attrs: { href: notification.data.link },
+                    domProps: { textContent: _vm._s(notification.data.text) },
+                    on: {
+                      click: function($event) {
+                        return _vm.markAsRead(notification.id)
+                      }
+                    }
+                  })
+                ]
+              )
+            }),
+            _vm._v(" "),
+            _c("li", { staticClass: "divider" }),
+            _vm._v(" "),
+            _c("li", { staticClass: "dropdown-item" }, [
+              _c(
+                "a",
+                { attrs: { href: "#" }, on: { click: _vm.markAllAsRead } },
+                [_vm._v(" Marcar todo como leido ")]
+              )
             ])
-          }),
-          0
+          ],
+          2
         )
       : _vm._e()
   ])

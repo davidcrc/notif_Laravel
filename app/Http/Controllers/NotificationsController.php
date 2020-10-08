@@ -35,9 +35,9 @@ class NotificationsController extends Controller
         DatabaseNotification::find($id)->markAsRead();
 
         // Depende si necesitas devolver o no una respuesta
-        // if(request()->ajax()){
-        //     return auth()->user()->unreadNotifications;
-        // }
+        if(request()->ajax()){
+            return auth()->user()->unreadNotifications;
+        }
 
         return back()->with('flash', 'Notificacion marcada como leida');
 
